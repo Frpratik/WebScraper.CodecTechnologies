@@ -35,6 +35,7 @@ def get_db():
 
 # Function to save scraped results in the database
 def save_results(url: str, data: dict, db):
+    print("Inside Saved Results=================================================")
     content = str(data)  # Convert the data to a string (could be a JSON serialization)
     scraped_result = ScrapedData(url=url, content=content)
     db.add(scraped_result)
@@ -44,10 +45,12 @@ def save_results(url: str, data: dict, db):
 
 # Function to get all saved results from the database
 def get_results(db):
+    print("Inside Get Results=================================================")
     return db.query(ScrapedData).all()
 
 # Function to delete a scraped result by its ID
 def delete_result(id: int, db):
+    print("Inside Delete Results=================================================")
     result = db.query(ScrapedData).filter(ScrapedData.id == id).first()
     if result:
         db.delete(result)

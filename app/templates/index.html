@@ -21,7 +21,7 @@
         </section>
 
         <!-- Display results dynamically -->
-        <section id="results-section">
+        <section id="results-section" style="display: {% if data %}block{% else %}none{% endif %};">
             <h2>Scraped Results</h2>
             <div id="scraped-data">
                 {% if data %}
@@ -68,14 +68,18 @@
         <!-- Download section -->
         <section id="download-section">
             <h2>Download Results</h2>
-            <form method="post" action="/download/json">
-                <input type="url" name="url" placeholder="Enter URL for JSON download" required />
-                <button type="submit">Download JSON</button>
-            </form>
-            <form method="post" action="/download/csv">
-                <input type="url" name="url" placeholder="Enter URL for CSV download" required />
-                <button type="submit">Download CSV</button>
-            </form>
+            {% if data %}
+                <form method="post" action="/download/json">
+                    <input type="hidden" name="url" value="{{ url }}">
+                    <button type="submit">Download JSON</button>
+                </form>
+                <form method="post" action="/download/csv">
+                    <input type="hidden" name="url" value="{{ url }}">
+                    <button type="submit">Download CSV</button>
+                </form>
+            {% else %}
+                <p>No URL available for download.</p>
+            {% endif %}
         </section>
     </main>
     <footer>

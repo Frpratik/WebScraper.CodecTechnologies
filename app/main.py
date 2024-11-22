@@ -2,6 +2,7 @@
 from fastapi import FastAPI, Form, Request, Depends
 from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from .scraper import scrape_website
 from .database import get_db, save_results, get_results, delete_result
 from .scheduler import start_scheduler
@@ -11,6 +12,8 @@ app = FastAPI()
 
 # Static files and templates
 templates = Jinja2Templates(directory="app/templates")
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # Start the background scheduler
 start_scheduler()
