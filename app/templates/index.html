@@ -3,88 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Web Scraper</title>
+    <title>Web Scraper</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <header>
-        <h1>Advanced Web Scraper</h1>
+        <h1>Web Scraper</h1>
     </header>
-    <main>
-        <!-- Form for scraping -->
-        <section id="scrape-section">
-            <h2>Scrape a Website</h2>
-            <form id="scrape-form" method="post" action="/scrape">
-                <input type="url" name="url" placeholder="Enter website URL" required />
-                <button type="submit">Scrape</button>
-            </form>
-        </section>
 
-        <!-- Display results dynamically -->
-        <section id="results-section" style="display: {% if data %}block{% else %}none{% endif %};">
-            <h2>Scraped Results</h2>
-            <div id="scraped-data">
-                {% if data %}
-                    <h3>Data from: {{ url }}</h3>
-                    <p><strong>Titles:</strong></p>
-                    <ul>
-                        {% for title in data.titles %}
-                        <li>{{ title }}</li>
-                        {% endfor %}
-                    </ul>
-                    <p><strong>Links:</strong></p>
-                    <ul>
-                        {% for link in data.links %}
-                        <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+    <!-- Scraping Form -->
+    <section id="scraping-section">
+        <h2>Scrape a Website</h2>
+        <form id="scrape-form" method="post" action="/scrape">
+            <label for="url">Enter URL:</label>
+            <input type="url" id="url" name="url" placeholder="https://example.com" required>
+            <button type="submit">Scrape</button>
+        </form>
+    </section>
+
+    <!-- Scraped Results -->
+    <section id="scraped-results">
+        <h2>Scraped Data</h2>
+        <div id="scraped-data">
+            <!-- Dynamic Content -->
+        </div>
+        <form id="download-section">
+            <button type="button" id="download-json">Download JSON</button>
+            <button type="button" id="download-csv">Download CSV</button>
+        </form>
+    </section>
+
+    <!-- Saved Results -->
+    <section id="saved-results-section">
+        <h2>Saved Results</h2>
+        <div id="saved-data">
+            <button id="load-saved-results">View Saved Results</button>
+            <div id="saved-results-container">
+                <!-- Dynamic Content -->
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Saved results from the database -->
-        <section id="saved-section">
-            <h2>Saved Results</h2>
-            <div id="saved-results">
-                {% if saved_results %}
-                    <ul>
-                        {% for result in saved_results %}
-                        <li>
-                            <strong>URL:</strong> {{ result.url }}<br>
-                            <strong>Timestamp:</strong> {{ result.timestamp }}
-                            <form method="post" action="/delete" style="display: inline;">
-                                <input type="hidden" name="id" value="{{ result.id }}">
-                                <button type="submit" class="delete-btn">Delete</button>
-                            </form>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <p>No saved results found.</p>
-                {% endif %}
-            </div>
-        </section>
-
-        <!-- Download section -->
-        <section id="download-section">
-            <h2>Download Results</h2>
-            {% if data %}
-                <form method="post" action="/download/json">
-                    <input type="hidden" name="url" value="{{ url }}">
-                    <button type="submit">Download JSON</button>
-                </form>
-                <form method="post" action="/download/csv">
-                    <input type="hidden" name="url" value="{{ url }}">
-                    <button type="submit">Download CSV</button>
-                </form>
-            {% else %}
-                <p>No URL available for download.</p>
-            {% endif %}
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Advanced Web Scraper</p>
-    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/static/script.js"></script>
 </body>
 </html>

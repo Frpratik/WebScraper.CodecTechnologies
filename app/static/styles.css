@@ -1,113 +1,208 @@
-/* General Styles */
+/* Reset and Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
     color: #333;
-    max-width: 100%;
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    justify-content: center;
 }
 
+/* Header Styling */
 header {
-    background-color: #0073e6;
+    background: linear-gradient(135deg, #42a5f5, #1e88e5);
     color: white;
     text-align: center;
-    padding: 1rem 0;
-}
-
-main {
-    max-width: 1200px; /* Ensure content doesn't stretch too wide on large screens */
-    margin: 0 auto; /* Center the main content */
-    padding: 2rem;
-    box-sizing: border-box; /* Make sure padding is included in the total width */
-    word-wrap: break-word; /* Allows content to wrap and continue on next line if necessary */
-}
-
-/* Section Styles */
-section {
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* Ensure padding is inside section's total width */
-}
-
-h2 {
-    color: #0073e6;
-    margin-bottom: 0.5rem;
-}
-
-input[type="url"] {
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
     width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+    max-width: 1200px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Section Styling */
+section {
+    background: #fff;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+section:hover {
+    transform: translateY(-5px);
+}
+
+section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #1e88e5;
+    text-transform: uppercase;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+form input[type="url"] {
+    padding: 10px;
+    font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Include padding within the width */
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-button {
-    padding: 0.5rem 1rem;
+form input[type="url"]:focus {
+    border-color: #42a5f5;
+    box-shadow: 0 0 8px rgba(66, 165, 245, 0.4);
+}
+
+form button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: white;
+    background: linear-gradient(135deg, #42a5f5, #64b5f6);
     border: none;
-    background-color: #0073e6;
-    color: white;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    box-sizing: border-box; /* Ensure button padding doesn't cause overflow */
+    transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: #005bb5;
+form button:hover {
+    background: linear-gradient(135deg, #1e88e5, #42a5f5);
 }
 
-/* Specific Section Styles for Lists */
-#results-section ul, #saved-section ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#results-section li, #saved-section li {
-    margin: 0.5rem 0;
-}
-
-/* Styles for Delete Button */
-.delete-btn {
-    background-color: #e60000;
-    margin-left: 0.5rem;
-}
-
-.delete-btn:hover {
-    background-color: #b30000;
-}
-
-/* Footer Styles */
-footer {
+/* Scraped Results Styling */
+#scraped-results, #saved-results-section {
     text-align: center;
-    padding: 1rem;
-    background-color: #0073e6;
-    color: white;
 }
 
-/* Responsive Adjustments */
+#scraped-data, #saved-results-container {
+    background: #f9f9f9;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+    color: #555;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#scraped-data button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ff4d4d;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#scraped-data button:hover {
+    background-color: #ff1a1a;
+}
+
+/* Button Group Styling */
+#download-section button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    background: linear-gradient(135deg, #ff9800, #ffb74d);
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#download-section button:hover {
+    background: linear-gradient(135deg, #f57c00, #ff9800);
+}
+
+/* Saved Results */
+#saved-data {
+    margin-top: 15px;
+}
+
+#saved-results-container div {
+    background: #eef7fa;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid #42a5f5;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+#saved-results-container a {
+    color: #42a5f5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#saved-results-container a:hover {
+    text-decoration: underline;
+}
+
+/* Full-Screen Design */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-between;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
-    main {
-        padding: 1rem;
+    header h1 {
+        font-size: 2rem;
     }
 
     section {
-        padding: 1rem;
+        width: 100%;
+        padding: 15px;
     }
 
-    input[type="url"] {
-        padding: 0.8rem;
+    form button, #download-section button {
+        width: 100%;
+        margin-bottom: 10px;
     }
 
-    button {
-        padding: 0.8rem 1.2rem;
+    #saved-results-container div {
+        padding: 8px;
     }
 }
